@@ -1,24 +1,37 @@
+# Primeiro as funções de equação e depois o sistema para escolher entre
+# Calculo, historico e analise
+
+
 def somar():
+
+    # Variaveis da função
     lista = []
     texto = []
     qta = int(input("\nQuantos numeros quer somar? "))
 
+    # Loop para pegar quantos números que quiser digitar e fazer equação
     while len(lista) < qta:
         numero = int(input("Número "))
         lista.append(numero)
         variavel = str(numero)
         texto.append(variavel)
 
+    # Mostra o resultado
     print("\nO resultado da soma é", sum(lista))
+
+    # Pega o resultado e a equação
     historico.append(f'{" + ".join(texto)} = {sum(lista)}')
     analise.append(sum(lista))
 
 
 def subtrair():
+
+    # Variaveis da função
     lista = []
     texto = []
     qta = int(input("\nQuantos numeros quer subtrair? "))
 
+    # Loop para pegar quantos números que quiser digitar e fazer equação
     while len(lista) < qta:
         numero = int(input("Número "))
         lista.append(numero)
@@ -26,45 +39,62 @@ def subtrair():
         texto.append(variavel)
         sub = lista[0]
 
+    # Pegando os números a partir do segundo número para subtrair do primeiro
     for i in lista[1:]:
         sub -= i
 
+    # Mostra o resultado
     print("\nO resultado da subtração é", sub)
+
+    # Pega o resultado e a equação
     historico.append(f'{" - ".join(texto)} = {sub}')
     analise.append(sub)
 
 
 def dividir():
+
+    # Printando e pegando os números para a multiplicação
     print("\nQual número quer dividir?")
     a = int(input("Número "))
     print("Por qual?")
     b = int(input("Número "))
     print("\nO resultado da divisão é", round(a / b, 2))
 
+    # O historico pegando uma string da equação feita
     historico.append(f"{a} / {b} = {round(a / b, 2)}")
+
+    # A analise pega somente o resultado para ser analisada
     analise.append(round(a / b, 2))
 
 
 def multiplicar():
+
+    # Printando e pegando os números para a multiplicação
     print("\nQual número quer multiplicar?")
     a = int(input("Número "))
     print("Por qual?")
     b = int(input("Número "))
     print("\nO resultado da multiplicação é", round(a * b, 2))
 
+    # O historico pegando uma string da equação feita
     historico.append(f"{a} * {b} = {round(a * b, 2)}")
+
+    # A analise pega somente o resultado para ser analisada
     analise.append(round(a * b, 2))
 
 
+# Listas que pegam resultados importantes
 historico = []
 analise = []
 
+# Loop da calculadora
 while True:
     print("\nOlá, seja bem vindo a nossa calculadora py")
     print("-------------  O que deseja --------------\n")
     print("1 - calcular\n2 - ver historico\n3 - ver análise")
     info = input("Digite aqui ")
 
+    # Sistema para fazer os calculos
     if info == "1" or info == "calcular":
         print("\nQual operação você deseja? ")
         print("1 - Somar \n2 - Subtrair \n3 - Dividir \n4 - Multiplicar")
@@ -85,6 +115,7 @@ while True:
         else:
             print("\nNúmero digitado inválido, digite outro")
 
+    # Sistema para ver todo o historico
     elif info == "2" or info == "ver historico":
 
         print("\nVeja seu historico")
@@ -92,5 +123,11 @@ while True:
         for i in historico:
             print(i)
 
+    # Sistema para ver uma pequena analise
     elif info == "3" or info == "ver análise":
-        print(sum(analise) / len(analise))
+        print("\nA soma de todos os resultados é igual a", sum(analise))
+        print("A média de resultados é", round(sum(analise) / len(analise), 2))
+        print(f"Você fez um total de {len(analise)} calculos")
+
+    else:
+        print("\nNúmero inválido, digite outro")
